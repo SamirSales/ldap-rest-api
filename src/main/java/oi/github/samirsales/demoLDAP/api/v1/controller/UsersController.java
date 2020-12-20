@@ -3,6 +3,7 @@ package oi.github.samirsales.demoLDAP.api.v1.controller;
 import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserCreateInput;
 import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserIO;
 import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserViewResponse;
+import oi.github.samirsales.demoLDAP.api.v1.open_api.UsersControllerOpenApi;
 import oi.github.samirsales.demoLDAP.domain.entity.UserEntity;
 import oi.github.samirsales.demoLDAP.domain.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @SuppressWarnings("unused")
-public class UsersController {
+public class UsersController implements UsersControllerOpenApi {
 
     private final UserService userService;
     private final UserIO userIO;
@@ -28,6 +29,7 @@ public class UsersController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @Override
     public ResponseEntity<UserViewResponse> create(@RequestBody UserCreateInput input) {
         UserEntity userEntity = this.userIO.convertToEntity(input);
         UserEntity createdEntity = this.userService.create(userEntity);
@@ -36,6 +38,7 @@ public class UsersController {
     }
 
     @GetMapping
+    @Override
     public ResponseEntity<List<UserViewResponse>> getAll() {
         List<UserEntity> userEntities = this.userService.getAll();
         List<UserViewResponse> userViewResponses = this.userIO.convertToViewResponseList(userEntities);
@@ -44,6 +47,7 @@ public class UsersController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @Override
     public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
         this.userService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
