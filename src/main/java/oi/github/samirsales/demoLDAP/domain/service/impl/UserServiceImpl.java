@@ -1,7 +1,6 @@
 package oi.github.samirsales.demoLDAP.domain.service.impl;
 
-import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserCreateInput;
-import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserOutput;
+import oi.github.samirsales.demoLDAP.domain.entity.UserEntity;
 import oi.github.samirsales.demoLDAP.domain.exception.EntityNotFoundException;
 import oi.github.samirsales.demoLDAP.domain.exception.IllegalValueException;
 import oi.github.samirsales.demoLDAP.domain.proxy.UserProxy;
@@ -17,17 +16,17 @@ public class UserServiceImpl implements UserService {
 
     private final UserProxy userProxy;
 
-    public UserServiceImpl(UserProxy userProxy){
+    public UserServiceImpl(UserProxy userProxy) {
         this.userProxy = userProxy;
     }
 
     @Override
-    public UserOutput create(UserCreateInput input) throws IllegalValueException {
-        return this.userProxy.create(input);
+    public UserEntity create(UserEntity userEntity) throws IllegalValueException {
+        return this.userProxy.create(userEntity);
     }
 
     @Override
-    public List<UserOutput> getAll() {
+    public List<UserEntity> getAll() {
         return this.userProxy.getAll();
     }
 

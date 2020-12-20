@@ -1,7 +1,6 @@
 package oi.github.samirsales.demoLDAP.domain.service;
 
-import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserCreateInput;
-import oi.github.samirsales.demoLDAP.api.v1.input_output_object.users.UserOutput;
+import oi.github.samirsales.demoLDAP.domain.entity.UserEntity;
 import oi.github.samirsales.demoLDAP.domain.exception.EntityNotFoundException;
 import oi.github.samirsales.demoLDAP.domain.exception.IllegalValueException;
 
@@ -10,9 +9,9 @@ import java.util.UUID;
 
 public interface UserService {
 
-    UserOutput create(UserCreateInput input) throws IllegalValueException;
+    UserEntity create(UserEntity userEntity) throws IllegalValueException;
 
-    List<UserOutput> getAll();
+    List<UserEntity> getAll();
 
     void deleteById(UUID id) throws EntityNotFoundException;
 }

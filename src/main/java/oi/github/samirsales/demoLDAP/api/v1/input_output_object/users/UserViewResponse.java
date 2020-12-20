@@ -7,8 +7,8 @@ import java.util.UUID;
 
 @Setter
 @Getter
-public class UserOutput {
-    private UUID uid;
-    private String cn;
-    private String sn;
+public class UserViewResponse {
+    private UUID id;
+    private String name;
+    private String surname;
 }
