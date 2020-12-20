@@ -29,6 +29,6 @@ ldapmodify -h localhost -p 389 -w '123456' -D 'cn=admin,dc=techinterview,dc=com'
 ## Swagger
 [http://localhost:8080/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html)
 
-## Licente
+## License
 - MIT
 
